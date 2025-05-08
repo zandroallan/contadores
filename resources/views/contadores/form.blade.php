@@ -50,16 +50,6 @@
                                             <input type="text" class="form-control" id="curp" name="curp" placeholder="Clave Única de Registro de Población" required/>
                                         </div>
                                     </div>
-
-                                   <!--  <div class="col-12">
-                                        <div class="form-floating mb-3">
-                                            <label for="direccion">
-                                                <b class="text-primary">Dirección</b>
-                                                <span style="color: red">*</span>
-                                            </label>
-                                            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Dirección" required/>
-                                        </div>
-                                    </div> -->
                                 </div>
 
 
