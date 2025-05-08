@@ -2,32 +2,32 @@
                             <ul class="nav">
 
                                 <li class="_inicio">
-                                    <a href="{{ route('home') }}">Inicio</a>
+                                    <a href="<?php echo e(route('home')); ?>">Inicio</a>
                                 </li>
 
-                                @can('usuario-list')
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('usuario-list')): ?>
                                 <li class="_usuarios">
-                                    <a href="{{ route('usuarios.index') }}">Colegios</a>
+                                    <a href="<?php echo e(route('usuarios.index')); ?>">Colegios</a>
                                 </li>
-                                @endcan
+                                <?php endif; ?>
 
-                                @can('rol-list')
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('rol-list')): ?>
                                 <li class="_roles">
-                                    <a href="{{ route('roles.index') }}">Roles</a>
+                                    <a href="<?php echo e(route('roles.index')); ?>">Roles</a>
                                 </li>
-                                @endcan
+                                <?php endif; ?>
 
-                                @can('permiso-list')
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('permiso-list')): ?>
                                 <li class="_permisos">
-                                    <a href="{{ route('permisos.index') }}">Permisos</a>
+                                    <a href="<?php echo e(route('permisos.index')); ?>">Permisos</a>
                                 </li>
-                                @endcan
+                                <?php endif; ?>
 
-                                @can('rtec-list')
+                                <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('rtec-list')): ?>
                                 <li class="_rtecs">
-                                    <a href="{{ route('contadores.index') }}">Contadores</a>
+                                    <a href="<?php echo e(route('contadores.index')); ?>">Contadores</a>
                                 </li>
-                                @endcan
+                                <?php endif; ?>
 
                                 
                 
@@ -48,4 +48,4 @@
                                     </div>
                                 </li> -->
                             </ul>
-                        </div>
+                        </div><?php /**PATH C:\AppServ\www\contadores\resources\views/layouts/navigations.blade.php ENDPATH**/ ?>

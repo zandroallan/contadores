@@ -6,9 +6,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RtecController;
-use App\Http\Controllers\SupervisorController;
-use App\Http\Controllers\EspecialidadController;
+use App\Http\Controllers\ContadorController;
+// use App\Http\Controllers\SupervisorController;
+// use App\Http\Controllers\EspecialidadController;
 use App\Http\Controllers\FormatoController;
 
 
@@ -35,9 +35,9 @@ Route::get('home', [HomeController::class, 'index'])->name('home');
 
 Route::get('password', [HomeController::class, 'passwordUsers']);
 
-Route::get('verificar/{id}/folio', [RtecController::class, 'verificarFolio']);
+Route::get('verificar/{id}/folio', [ContadorController::class, 'verificarFolio']);
 
-Route::get('api/verificar/folio', [RtecController::class, 'rtecs_api']);
+Route::get('api/verificar/folio', [ContadorController::class, 'rtecs_api']);
 
 
 /**
@@ -81,19 +81,19 @@ Route::group(['middleware' => ['auth']],
 
         Route::resource('usuarios', UserController::class);
 
-        Route::resource('especialidades', EspecialidadController::class);
+        // Route::resource('especialidades', EspecialidadController::class);
 
-        Route::resource('rtecs', RtecController::class);
+        Route::resource('contadores', ContadorController::class);
 
-        Route::resource('supervisores', SupervisorController::class);
+        // Route::resource('supervisores', SupervisorController::class);
 
-        Route::post('constancia/upload', [RtecController::class, 'constanciaUpload']);
+        Route::post('constancia/upload', [ContadorController::class, 'constanciaUpload']);
 
-        Route::get('constancia/{id}/download', [RtecController::class, 'constanciaDownload']);
+        Route::get('constancia/{id}/download', [ContadorController::class, 'constanciaDownload']);
 
-        Route::get('qr', [RtecController::class, 'generateQRCode']);
+        Route::get('qr', [ContadorController::class, 'generateQRCode']);
 
-        Route::get('dowload/{id}/qr', [RtecController::class, 'dowloadQRCode']);
+        Route::get('dowload/{id}/qr', [ContadorController::class, 'dowloadQRCode']);
 
         Route::get('reporte/colegios', [FormatoController::class, 'reporte_colegio']);
 
@@ -110,13 +110,13 @@ Route::group(['middleware' => ['auth']],
 
         Route::get('api/permisos', [PermissionController::class, 'permisos_api']);
 
-        Route::get('api/especialidades', [EspecialidadController::class, 'especialidades_api']);
+        // Route::get('api/especialidades', [EspecialidadController::class, 'especialidades_api']);
 
-        Route::get('api/rtecs', [RtecController::class, 'rtecs_api']);
+        Route::get('api/contadores', [ContadorController::class, 'contadores_api']);
 
-        Route::get('api/cursos/estadisticas', [CursoController::class, 'cursos_estadisticas_api']);
+        // Route::get('api/cursos/estadisticas', [CursoController::class, 'cursos_estadisticas_api']);
 
-        Route::get('api/cursos/users', [CursoController::class, 'users_curso_api']);
+        // Route::get('api/cursos/users', [CursoController::class, 'users_curso_api']);
     }
 );
 

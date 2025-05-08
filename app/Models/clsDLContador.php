@@ -1,7 +1,7 @@
 <?php
 /*************************************************
-Nombre: clsDLRtec.php
-Descripción: Consultas a la tabla p_rtec
+Nombre: clsDLContador.php
+Descripción: Consultas a la tabla p_contadores
 Creación: Martes 21 de Enero de 2025.
 **************************************************/
 namespace App\Models;
@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 
-class clsDLRtec extends Model
+class clsDLContador extends Model
  {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $table = 'p_rtec';
+    protected $table = 'p_contadores';
     protected $fillable = [
         'id',
         'id_users',
@@ -37,36 +37,33 @@ class clsDLRtec extends Model
 
     public static function queryToDB($vfiltros=[], $limit=0)
      {
-        $query = clsDLRtec::select(
-            'p_rtec.id',
-            'p_rtec.id_status',
-            'p_rtec.id_users',
-            'p_rtec.id_sujeto',
-            'p_rtec.uniqid',
-            'p_rtec.folio',
-            'p_rtec.nombre',
-            'p_rtec.direccion',
-            'p_rtec.telefono',
-            'p_rtec.correo',
-            'p_rtec.no_cedula_profesional',
-            'p_rtec.no_rtec_interno',
-            'p_rtec.fecha_expedicion',
-            'p_rtec.claves',
-            'p_rtec.anexo',
-            'p_rtec.anexo_path',
+        $query = clsDLContador::select(
+            'p_contadores.id',
+            'p_contadores.id_status',
+            'p_contadores.id_users',
+            'p_contadores.id_sujeto',
+            'p_contadores.uniqid',
+            'p_contadores.folio',
+            'p_contadores.nombre',
+            'p_contadores.direccion',
+            'p_contadores.telefono',
+            'p_contadores.correo',
+            'p_contadores.no_cedula_profesional',
+            'p_contadores.no_rtec_interno',
+            'p_contadores.fecha_expedicion',
+            'p_contadores.claves',
+            'p_contadores.anexo',
+            'p_contadores.anexo_path',
             'users.name as colegio',
-            'c_sujeto.sujeto',
             'c_status.status'
         )
-        ->join('users', 'p_rtec.id_users', '=', 'users.id')
-        ->join('c_sujeto', 'p_rtec.id_sujeto', '=', 'c_sujeto.id')
-        ->join('c_status', 'p_rtec.id_status', '=', 'c_status.id')
-        ->when($vfiltros['id']          ?? null, fn($query, $val) => $query->where('p_rtec.id', $val))
-        ->when($vfiltros['id_users']    ?? null, fn($query, $val) => $query->where('p_rtec.id_users', $val))
-        ->when($vfiltros['id_status']   ?? null, fn($query, $val) => $query->where('p_rtec.id_status', $val))
-        ->when($vfiltros['id_sujeto']   ?? null, fn($query, $val) => $query->where('p_rtec.id_sujeto', $val))
-        ->when($vfiltros['uniqid']      ?? null, fn($query, $val) => $query->where('p_rtec.uniqid', $val))
-        ->orderByDesc('p_rtec.id');
+        ->join('users', 'p_contadores.id_users', '=', 'users.id')
+        ->join('c_status', 'p_contadores.id_status', '=', 'c_status.id')
+        ->when($vfiltros['id']          ?? null, fn($query, $val) => $query->where('p_contadores.id', $val))
+        ->when($vfiltros['id_users']    ?? null, fn($query, $val) => $query->where('p_contadores.id_users', $val))
+        ->when($vfiltros['id_status']   ?? null, fn($query, $val) => $query->where('p_contadores.id_status', $val))
+        ->when($vfiltros['uniqid']      ?? null, fn($query, $val) => $query->where('p_contadores.uniqid', $val))
+        ->orderByDesc('p_contadores.id');
 
         if ($limit != 0) {
             $query->limit($limit);
@@ -75,43 +72,43 @@ class clsDLRtec extends Model
         return $query;
 
 
-        // return clsDLRtec::select(
-        //     'p_rtec.id',
-        //     'p_rtec.id_status',
-        //     'p_rtec.id_users',
-        //     'p_rtec.id_sujeto',
-        //     'p_rtec.folio',
-        //     'p_rtec.nombre',
-        //     'p_rtec.direccion',
-        //     'p_rtec.telefono',
-        //     'p_rtec.correo',
-        //     'p_rtec.no_cedula_profesional',
-        //     'p_rtec.no_rtec_interno',
-        //     'p_rtec.fecha_expedicion',
-        //     'p_rtec.claves',
-        //     'p_rtec.anexo',
-        //     'p_rtec.anexo_path',
+        // return clsDLContador::select(
+        //     'p_contadores.id',
+        //     'p_contadores.id_status',
+        //     'p_contadores.id_users',
+        //     'p_contadores.id_sujeto',
+        //     'p_contadores.folio',
+        //     'p_contadores.nombre',
+        //     'p_contadores.direccion',
+        //     'p_contadores.telefono',
+        //     'p_contadores.correo',
+        //     'p_contadores.no_cedula_profesional',
+        //     'p_contadores.no_rtec_interno',
+        //     'p_contadores.fecha_expedicion',
+        //     'p_contadores.claves',
+        //     'p_contadores.anexo',
+        //     'p_contadores.anexo_path',
         //     'users.name as colegio'
         // )
-        // ->join('users', 'p_rtec.id_users', '=', 'users.id')
-        // ->join('c_sujeto', 'p_rtec.id_sujeto', '=', 'c_sujeto.id')
+        // ->join('users', 'p_contadores.id_users', '=', 'users.id')
+        // ->join('c_sujeto', 'p_contadores.id_sujeto', '=', 'c_sujeto.id')
         // ->where(function($vsql) use ($vfiltros) {
         //     if(array_key_exists('id', $vfiltros))
-        //         $vsql->where('p_rtec.id', $vfiltros['id']);               
+        //         $vsql->where('p_contadores.id', $vfiltros['id']);               
         // })
         // ->where(function($vsql) use ($vfiltros) {
         //     if(array_key_exists('id_users', $vfiltros))
-        //         $vsql->where('p_rtec.id_users', $vfiltros['id_users']);
+        //         $vsql->where('p_contadores.id_users', $vfiltros['id_users']);
         // })
         // ->where(function($vsql) use ($vfiltros) {
         //     if(array_key_exists('id_status', $vfiltros))
-        //         $vsql->where('p_rtec.id_status', $vfiltros['id_status']);
+        //         $vsql->where('p_contadores.id_status', $vfiltros['id_status']);
         // })
         // ->where(function($vsql) use ($vfiltros) {
         //     if(array_key_exists('id_sujeto', $vfiltros))
-        //         $vsql->where('p_rtec.id_sujeto', $vfiltros['id_sujeto']);
+        //         $vsql->where('p_contadores.id_sujeto', $vfiltros['id_sujeto']);
         // })
-        // ->orderBy('p_rtec.id', 'DESC')
+        // ->orderBy('p_contadores.id', 'DESC')
         // if ( $limit != 0 ) {
         //     ->limit($limit)
         // };
@@ -119,7 +116,7 @@ class clsDLRtec extends Model
 
     // public static function queryEstadisticasToDB($vfiltros=[])
     //  {
-    //     return clsDLRtec::select(
+    //     return clsDLContador::select(
     //         'c_curso.id',
     //         'c_curso.anio',
     //         'c_curso.curso',

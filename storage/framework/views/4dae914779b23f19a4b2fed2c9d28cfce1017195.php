@@ -1,24 +1,24 @@
-    @extends('layouts.app')
+    
 
-        @section('css')
+        <?php $__env->startSection('css'); ?>
 
-            <link rel="stylesheet" href="{{ asset('public/template/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
-            <!-- <link rel="stylesheet" href="{{ asset('template/assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}"> -->
-            <link rel="stylesheet" href="{{ asset('public/template/assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
+            <link rel="stylesheet" href="<?php echo e(asset('public/template/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css')); ?>">
+            <!-- <link rel="stylesheet" href="<?php echo e(asset('template/assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css')); ?>"> -->
+            <link rel="stylesheet" href="<?php echo e(asset('public/template/assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css')); ?>">
 
-        @endsection
+        <?php $__env->stopSection(); ?>
 
-        @section('breadcrumb')
+        <?php $__env->startSection('breadcrumb'); ?>
 
             <li class="breadcrumb-item" aria-current="page">
-                <a class="link-fx" href="{{ route('home') }}">
+                <a class="link-fx" href="<?php echo e(route('home')); ?>">
                     Inicio
                 </a>
             </li>
 
-        @endsection
+        <?php $__env->stopSection(); ?>
 
-        @section('content')
+        <?php $__env->startSection('content'); ?>
 
         <div id="policy" class="section-container bg-white">
             <div class="container">
@@ -74,7 +74,7 @@
                         Aquí puedes ver los 10 folios más nuevos registrados en el sistema.
                     </p>
 
-                    @if ( Auth::User()->id == 2 )
+                    <?php if( Auth::User()->id == 2 ): ?>
                         <hr />
                         <div class="row">
                             <div class="col-md-12">
@@ -84,7 +84,7 @@
                             </div>
                         </div>
                         <hr />
-                    @endif  
+                    <?php endif; ?>  
                 </div>
             </div>
             <div class="account-body">
@@ -98,17 +98,19 @@
             </div>
         </div>      
 
-        @endsection
+        <?php $__env->stopSection(); ?>
 
-        @section('js')
+        <?php $__env->startSection('js'); ?>
 
             <!-- Page JS Plugins -->
-            <script src="{{ asset('public/template/assets/js/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-            <script src="{{ asset('public/template/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-            <script src="{{ asset('public/template/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-            <script src="{{ asset('public/template/assets/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
+            <script src="<?php echo e(asset('public/template/assets/js/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+            <script src="<?php echo e(asset('public/template/assets/js/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js')); ?>"></script>
+            <script src="<?php echo e(asset('public/template/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js')); ?>"></script>
+            <script src="<?php echo e(asset('public/template/assets/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js')); ?>"></script>
             <!-- Personal Js-Script -->
-            <script src="{{ asset('public/views/home.js') }}"></script>
-            <script src="{{ asset('public/views/tablero/index.js') }}"></script>
+            <script src="<?php echo e(asset('public/views/home.js')); ?>"></script>
+            <script src="<?php echo e(asset('public/views/tablero/index.js')); ?>"></script>
 
-        @endsection
+        <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\AppServ\www\contadores\resources\views/home.blade.php ENDPATH**/ ?>

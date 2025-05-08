@@ -1,6 +1,6 @@
 $(document).ready(
     function () {
-        especialidades();
+        // especialidades();
         
         $('.btn-rtec-store').attr('onClick', 'confirmStore()');
         $('._rtecs').addClass('active');
@@ -34,7 +34,7 @@ function store()
  {   
    $.ajax({
         type: 'POST',
-        url: vURL + '/rtecs',
+        url: vURL + '/contadores',
         dataType: "JSON",
         data: $('#frm-rtec-store').serialize(),
         headers: {
@@ -45,7 +45,7 @@ function store()
             let vRedirect=null;
             switch (vresponse.codigo) {
                 case 1:
-                    swalFire(vresponse.icono, 'Mensaje', vresponse.mensaje, '/rtecs');
+                    swalFire(vresponse.icono, 'Mensaje', vresponse.mensaje, '/contadores');
                   break;
                 default:
                     // let _vhtml='';
@@ -65,34 +65,34 @@ function store()
     }); 
  }
 
-function especialidades()
- {
-    $.ajax({
-        type: 'GET',
-        url: vURL + '/api/especialidades',
-        dataType: "JSON",
-        data: {
-            method: 'get',
-            id_sujeto: 1
-        },
-        success: function(vresponse, vtextStatus, vjqXHR) {
-            let vhtml ='';
-            for ( vi=0; vi<vresponse.data.length; vi++ ) {
-                vhtml+='<div class="col-md-6">';
-                vhtml+='    <div class="form-check form-block">';
-                vhtml+='        <input class="form-check-input" type="checkbox" value="'+ vresponse.data[vi].id +'" id="especialidades_'+ vi +'" name="especialidades[]">';
-                vhtml+='        <label class="form-check-label" for="especialidades_'+ vi +'">';
-                vhtml+='            <span class="d-flex align-items-center">';
-                vhtml+='                <span class="ms-2">';
-                vhtml+='                    <span class="d-block fs-sm"><b>'+ vresponse.data[vi].clave +'</b> '+ vresponse.data[vi].especialidad +'</span>';
-                vhtml+='                </span>';
-                vhtml+='            </span>';
-                vhtml+='        </label>';
-                vhtml+='    </div>';
-                vhtml+='</div>';
-            }
-            $('.div-especialidades').html(vhtml);
-        },
-        error: function(vjqXHR, vtextStatus, verrorThrown){ }
-    });
- }
+// function especialidades()
+//  {
+//     $.ajax({
+//         type: 'GET',
+//         url: vURL + '/api/especialidades',
+//         dataType: "JSON",
+//         data: {
+//             method: 'get',
+//             id_sujeto: 1
+//         },
+//         success: function(vresponse, vtextStatus, vjqXHR) {
+//             let vhtml ='';
+//             for ( vi=0; vi<vresponse.data.length; vi++ ) {
+//                 vhtml+='<div class="col-md-6">';
+//                 vhtml+='    <div class="form-check form-block">';
+//                 vhtml+='        <input class="form-check-input" type="checkbox" value="'+ vresponse.data[vi].id +'" id="especialidades_'+ vi +'" name="especialidades[]">';
+//                 vhtml+='        <label class="form-check-label" for="especialidades_'+ vi +'">';
+//                 vhtml+='            <span class="d-flex align-items-center">';
+//                 vhtml+='                <span class="ms-2">';
+//                 vhtml+='                    <span class="d-block fs-sm"><b>'+ vresponse.data[vi].clave +'</b> '+ vresponse.data[vi].especialidad +'</span>';
+//                 vhtml+='                </span>';
+//                 vhtml+='            </span>';
+//                 vhtml+='        </label>';
+//                 vhtml+='    </div>';
+//                 vhtml+='</div>';
+//             }
+//             $('.div-especialidades').html(vhtml);
+//         },
+//         error: function(vjqXHR, vtextStatus, verrorThrown){ }
+//     });
+//  }

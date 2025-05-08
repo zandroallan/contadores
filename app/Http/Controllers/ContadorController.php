@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
-use App\Models\clsDLRtec;
-use App\Models\clsDLRtecEspecialidad;
+use App\Models\clsDLContador;
+use App\Models\clsDLContadorEspecialidad;
 use App\Models\clsDLEspecialidad;
 use App\Models\clsDLFoliador;
 use Auth;
@@ -22,7 +22,7 @@ use DB;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Writer\PngWriter;
 
-class RtecController extends Controller
+class ContadorController extends Controller
 {
     public function verificarFolio($uniqid)
      {
@@ -32,15 +32,15 @@ class RtecController extends Controller
          * Muestra la vista de verificació de los folios.
          */
 
-        return view('rtecs.verify', ['uniqid' => $uniqid]);
+        return view('contadores.verify', ['uniqid' => $uniqid]);
      }
 
-    public function rtecs_api(Request $vrequest)
+    public function contadores_api(Request $vrequest)
      {
         /**
          * Sandro Alan Gomez Aceituno
          * 12 de Febrero de 2025
-         * Muestra todos los Rtecs registrados.
+         * Muestra todos los contadores registrados.
          *
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response json
@@ -56,16 +56,16 @@ class RtecController extends Controller
         try {            
             switch ($vrequest->input('method')) {
                 case 'edit':
-                    $vrespuesta['data']=clsDLRtec::queryToDB(['id' => $vrequest->id])->first();
-                    $vrespuesta['espds']=clsDLEspecialidad::queryToDB($vfiltro)->get();
-                    $vrespuesta['espds_select']=clsDLRtecEspecialidad::queryToDB(['id_rtec' => $vrequest->id])->get();
+                    $vrespuesta['data']=clsDLContador::queryToDB(['id' => $vrequest->id])->first();
+                    // $vrespuesta['espds']=clsDLEspecialidad::queryToDB($vfiltro)->get();
+                    // $vrespuesta['espds_select']=clsDLContadorEspecialidad::queryToDB(['id_rtec' => $vrequest->id])->get();
                   break;
                 case 'show':
-                    $_MDL_DATA_Rtec=clsDLRtec::queryToDB(['uniqid' => $vrequest->uniqid])->first();
+                    $_MDL_DATA_Rtec=clsDLContador::queryToDB(['uniqid' => $vrequest->uniqid])->first();
                     $vrespuesta['data']=$_MDL_DATA_Rtec;
-                    $vrespuesta['espds']=clsDLRtecEspecialidad::queryToDB(['id_rtec' => $_MDL_DATA_Rtec->id])->get();
+                    // $vrespuesta['espds']=clsDLContadorEspecialidad::queryToDB(['id_rtec' => $_MDL_DATA_Rtec->id])->get();
 
-                    $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/rtec/verificar/'. $_MDL_DATA_Rtec->uniqid .'/folio');  
+                    $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/contadores/verificar/'. $_MDL_DATA_Rtec->uniqid .'/folio');  
 
                     $qrCode->setSize(230);
                     // Usar el escritor PNG para generar la imagen
@@ -88,7 +88,7 @@ class RtecController extends Controller
                         $vfiltro['id_users']=auth()->user()->id;
                     }
 
-                    $vrespuesta['data']=clsDLRtec::queryToDB($vfiltro)->get();
+                    $vrespuesta['data']=clsDLContador::queryToDB($vfiltro)->get();
                   break;
                 default:
                     $vrespuesta['mensaje']='Metodo de petición, no definido.';
@@ -111,7 +111,7 @@ class RtecController extends Controller
         /**
          * Sandro Alan Gomez Aceituno
          * 25 de Febrero de 2025
-         * Muestra todos los Rtecs registrados.
+         * Muestra todos los contadores registrados.
          *
          * @param  \Illuminate\Http\Request  $request
          * @return \Illuminate\Http\Response json
@@ -133,7 +133,7 @@ class RtecController extends Controller
                 return response()->json(['icon'=>'warning', 'cove'=>0, 'mensaje'=> 'Favor de llenar todos los campos, ', $validator->errors()->toJson()], 400);
             }
 
-            $_MDL_Data_Rtec=clsDLRtec::findOrFail((int)$vrequest->input('id'));
+            $_MDL_Data_Rtec=clsDLContador::findOrFail((int)$vrequest->input('id'));
             $_PATH_File= '/constancia/'. date('Y') .'/'. $_MDL_Data_Rtec->folio;
             
             $_Input_File = $vrequest->file('file');
@@ -162,7 +162,7 @@ class RtecController extends Controller
 
     public function constanciaDownload($id)
      {
-        $_MDL_Data_Rtec=clsDLRtec::findOrFail($id);
+        $_MDL_Data_Rtec=clsDLContador::findOrFail($id);
         $_PATH_File=storage_path() . $_MDL_Data_Rtec->anexo_path.'/'.$_MDL_Data_Rtec->anexo;
 
         if ( File::exists($_PATH_File) ) {
@@ -172,9 +172,9 @@ class RtecController extends Controller
 
     public function dowloadQRCode($id)
      {
-        $_MDL_Data_Rtec=clsDLRtec::find($id);
+        $_MDL_Data_Rtec=clsDLContador::find($id);
 
-        $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/rtec/verificar/'. $_MDL_Data_Rtec->uniqid .'/folio');
+        $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/contadores/verificar/'. $_MDL_Data_Rtec->uniqid .'/folio');
 
         // Usar el escritor PNG para generar la imagen
         $writer = new PngWriter();
@@ -190,7 +190,7 @@ class RtecController extends Controller
 
     public function generateQRCode()
      {
-        $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/rtec/'); 
+        $qrCode = new QrCode('https://apps.anticorrupcionybg.gob.mx/contadores/'); 
 
         // Usar el escritor PNG para generar la imagen
         $writer = new PngWriter();
@@ -212,7 +212,7 @@ class RtecController extends Controller
 
     public function index()
      {
-        return view('rtecs.index');
+        return view('contadores.index');
      }
     
     public function create()
@@ -225,7 +225,7 @@ class RtecController extends Controller
          * @return \Illuminate\Http\Response
          */
 
-        return view('rtecs.create');
+        return view('contadores.create');
      }
 
     public function store(Request $request)
@@ -255,8 +255,8 @@ class RtecController extends Controller
             'correo' => 'required|email',
             'no_cedula_profesional' => 'required|integer|min:13',
             'no_rtec_interno' => 'required|integer|min:13',
-            'fecha_expedicion' => 'required|date_format:Y-m-d',
-            'especialidades' => 'required|array|min:1'
+            'fecha_expedicion' => 'required|date_format:Y-m-d'
+            // 'especialidades' => 'required|array|min:1'
         ]);
 
         if ( $validator->fails() ) {
@@ -273,13 +273,13 @@ class RtecController extends Controller
 
             $_Data_Rtec['folio']=clsDLFoliador::getSingleFolio();
 
-            $_MDL_Data_Rtec=new clsDLRtec;
+            $_MDL_Data_Rtec=new clsDLContador;
             $_MDL_Data_Rtec->fill($_Data_Rtec)->save();
 
             if ( !empty($_Data_Rtec['especialidades']) && is_array($_Data_Rtec['especialidades']) ) {
                 foreach ( $_Data_Rtec['especialidades'] as $array) {
                     
-                    $_MDL_Data_Rtec_Especialidad=new clsDLRtecEspecialidad;
+                    $_MDL_Data_Rtec_Especialidad=new clsDLContadorEspecialidad;
                     $_MDL_Data_Rtec_Especialidad->fill([
                         'id_rtec' => $_MDL_Data_Rtec->id,                    
                         'id_especialidad' => $array,
@@ -315,7 +315,7 @@ class RtecController extends Controller
      */
     public function show($id)
      {
-        return view('rtecs.show', ['id'=> $id]);
+        return view('contadores.show', ['id'=> $id]);
      }
 
 
@@ -328,7 +328,7 @@ class RtecController extends Controller
          * @return \Illuminate\Http\Response
          */
 
-        return view('rtecs.edit', [ 'id' => $id ]);
+        return view('contadores.edit', [ 'id' => $id ]);
      }
 
     public function update(Request $request, $id)
@@ -369,15 +369,15 @@ class RtecController extends Controller
         try {
             $_Data_Rtec = $request->all();
 
-            $_MDL_Data_Rtec=clsDLRtec::findOrFail($id);
+            $_MDL_Data_Rtec=clsDLContador::findOrFail($id);
             $_MDL_Data_Rtec->fill($_Data_Rtec)->save();
 
-            clsDLRtecEspecialidad::where('id_rtec', $id)->delete();
+            clsDLContadorEspecialidad::where('id_rtec', $id)->delete();
 
             if ( !empty($_Data_Rtec['especialidades']) && is_array($_Data_Rtec['especialidades']) ) {
                 foreach ( $_Data_Rtec['especialidades'] as $array) {
                     
-                    $_MDL_Data_Rtec_Especialidad=new clsDLRtecEspecialidad;
+                    $_MDL_Data_Rtec_Especialidad=new clsDLContadorEspecialidad;
                     $_MDL_Data_Rtec_Especialidad->fill([
                         'id_rtec' => $_MDL_Data_Rtec->id,                    
                         'id_especialidad' => $array,
@@ -423,7 +423,7 @@ class RtecController extends Controller
             'mensaje'=> 'El registro el Rtec ha sido eliminado satisfactoriamente.'
         ];
         try {            
-            clsDLRtec::find($id)->delete();
+            clsDLContador::find($id)->delete();
         }
         catch( Exception $vexception ) {
             $vstatus=500;

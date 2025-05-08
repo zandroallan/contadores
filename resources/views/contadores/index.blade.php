@@ -11,8 +11,8 @@
         @section('breadcrumb')
 
             <li class="breadcrumb-item">
-                <a href="{{ route('rtecs.index') }}">
-                    Rtecs
+                <a href="{{ route('contadores.index') }}">
+                    Contadores
                 </a>
             </li>
 
@@ -24,11 +24,8 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-12"></label>
                 <div class="col-md-12">
-                    <a href="{{ route('rtecs.create') }}" class="btn btn-inverse btn-theme">
-                        <i class="text-primary fa fa-plus"></i> Crear RTEC
-                    </a>
-                    <a href="{{ route('supervisores.create') }}" class="btn btn-inverse btn-theme">
-                        <i class="text-primary fa fa-plus"></i> Crear supervisor
+                    <a href="{{ route('contadores.create') }}" class="btn btn-inverse btn-theme">
+                        <i class="text-primary fa fa-plus"></i> Nuevo registro
                     </a>
                 </div>
             </div>
@@ -41,9 +38,9 @@
             <div class="checkout">
                 <div class="checkout-header" style="color: #fff;">
                     <h4 >
-                        <i class="fab fa-slideshare fa-fw text-primary"></i> Listado de RTEC's
+                        <i class="fab fa-slideshare fa-fw text-primary"></i> Listado de contadores
                     </h4>
-                    <p>Este vista contiene el registro actualizado de los Representantes Técnicos (RTEC) autorizados en los colegios correspondientes. </p>
+                    <p>Este vista contiene el registro actualizado de los Contadores Certificados autorizados en los colegios correspondientes. </p>
                 </div>
                 <div class="checkout-body">
                     
@@ -57,7 +54,7 @@
                     </div>
                     <hr />
 
-                    <div class="table-responsive tbl-rtecs"></div>
+                    <div class="table-responsive tbl-contadores"></div>
 
                 </div>
             </div>
@@ -109,13 +106,13 @@
             <script src="{{ asset('public/template/assets/js/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
             <script src="{{ asset('public/template/assets/js/plugins/datatables-responsive-bs5/js/responsive.bootstrap5.min.js') }}"></script>
             <!-- Personal Js-Script -->
-            <script src="{{ asset('public/views/rtecs/index.js') }}"></script>
+            <script src="{{ asset('public/views/contadores/index.js') }}"></script>
 
         @endsection
 
         @section('script')
 
-            $('._rtecs').addClass('active');
+            $('._contadores').addClass('active');
             
             var _permissionEdit=false;
             var _permissionDelete=false;

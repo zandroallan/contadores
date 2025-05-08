@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Rtec | Web</title>
-        <meta name="description" content="Rtecs - Sistema Solicitud de Folios de Rtecs">
+        <title>Contadores | Web</title>
+        <meta name="description" content="Contadores - Sistema Solicitud de Folios de Contadores Certificados">
         <meta name="author" content="Sandro Alan Gomez Aceituno">
         <meta name="robots" content="noindex, nofollow">
 
@@ -49,7 +49,7 @@
                             <div class="p-4 p-xl-5 flex-grow-1 d-flex align-items-center">
                                 <div class="w-100">
                                     <a class="link-fx fw-semibold fs-2 text-white" href="index.html">
-                                        R<span class="fw-normal">tecs</span>
+                                        Con<span class="fw-normal">tadores</span>
                                     </a>
                                     <p class="text-white-75 me-xl-8 mt-2">
                                         Solicitud de Folios
@@ -58,7 +58,7 @@
                             </div>
                             <div class="p-4 p-xl-5 d-xl-flex justify-content-between align-items-center fs-sm">
                                 <p class="fw-medium text-white-50 mb-0">
-                                    <strong> Rtecs v1.0 </strong> © <span data-toggle="year-copy"></span>
+                                    <strong> Contadores v1.0 </strong> © <span data-toggle="year-copy"></span>
                                 </p>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="hero-static col-lg-8 d-flex flex-column align-items-center bg-body-extra-light">
                             <div class="p-3 w-100 d-lg-none text-center">
                                 <a class="link-fx fw-semibold fs-3 text-dark" href="index.html">
-                                    R<span class="fw-normal">tecs</span>
+                                    Con<span class="fw-normal">tadores</span>
                                 </a>
                             </div>
                             <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
@@ -110,7 +110,7 @@
                             </div>
                             <div class="px-4 py-3 w-100 d-lg-none d-flex flex-column flex-sm-row justify-content-between fs-sm text-center text-sm-start">
                                 <p class="fw-medium text-black-50 py-2 mb-0">
-                                    <strong> Rtecs v1.0 </strong> © <span data-toggle="year-copy"></span>
+                                    <strong> Contadores v1.0 </strong> © <span data-toggle="year-copy"></span>
                                 </p>
                             </div>
                         </div>

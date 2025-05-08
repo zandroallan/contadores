@@ -3,7 +3,7 @@
         @section('breadcrumb')
 
             <li class="breadcrumb-item">
-                <a class="link-fx" href="{{ route('rtecs.index') }}">Rtecs</a>
+                <a class="link-fx" href="{{ route('contadores.index') }}">Rtecs</a>
             </li>
             <li class="breadcrumb-item" aria-current="page">
                 <a class="link-fx text-dark" href="#">
@@ -19,7 +19,7 @@
             <div class="form-group row">
                 <label class="col-form-label col-md-12"></label>
                 <div class="col-md-12">
-                    <a class="btn btn-inverse btn-theme" href="{{ route('rtecs.index') }}">
+                    <a class="btn btn-inverse btn-theme" href="{{ route('contadores.index') }}">
                         <i class="text-primary fa fa-reply-all"></i> Regresar
                     </a>
                 </div>
@@ -48,7 +48,7 @@
         @section('js')
 
             <!-- Personal Js-Script -->
-            <script src="{{ asset('public/views/rtecs/show.js') }}"></script>
+            <script src="{{ asset('public/views/contadores/show.js') }}"></script>
 
         @endsection
 

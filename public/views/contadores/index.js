@@ -13,7 +13,7 @@ function index()
  {
     $.ajax({
         type: 'GET',
-        url: vURL + '/api/rtecs',
+        url: vURL + '/api/contadores',
         dataType: "JSON",
         data: {
             method: 'get'
@@ -33,7 +33,6 @@ function tbl_response(data)
         vhtml+='        <tr>';
         vhtml+='            <th>#</th>';
         vhtml+='            <th><i class="fa fa-clipboard"></i> FOLIO</th>';
-        vhtml+='            <th><i class="fa fa-user"></i> SUJETO</th>';
         vhtml+='            <th><i class="fa fa-home"></i> COLEGIO</th>';
         vhtml+='            <th><i class="fa fa-calendar"></i> EXPEDICIÓN</th>';
         vhtml+='            <th><i class="fa fa-phone"></i> TELÉFONO</th>';
@@ -63,7 +62,6 @@ function tbl_response(data)
         vhtml+='        <tr class="_tr_'+ data[vi].id +'">';
         vhtml+='            <td><span class="badge bg-black-50">' + (vi + 1) + '</span></td>';
         vhtml+='            <td class="fs-sm"><b>'+ data[vi].folio +'</b></td>';
-        vhtml+='            <td class="fs-sm"><b>'+ data[vi].sujeto +'</b></td>';
         vhtml+='            <td class="fs-sm"><b>'+ data[vi].nombre +'</b><br />'+ data[vi].colegio +'</td>';
         vhtml+='            <td class="fs-sm">';
         vhtml+='                <p class="fw-semibold mb-1">'+ data[vi].fecha_expedicion +'</p>';
@@ -77,12 +75,12 @@ function tbl_response(data)
         vhtml+='                        ';
         vhtml+='                    </button>';
         vhtml+='                    <div class="dropdown-menu">';
-        vhtml+='                        <a class="dropdown-item" href="'+ vURL +'/rtecs/'+ data[vi].id +'">Detalles</a>';
+        vhtml+='                        <a class="dropdown-item" href="'+ vURL +'/contadores/'+ data[vi].id +'">Detalles</a>';
         if ( data[vi].anexo_path == null) {
             vhtml+='                        <a class="dropdown-item" href="#" onClick="openModal('+ data[vi].id +')">Cargar constancia</a>';
         }
         if ( _permissionEdit ) {
-            vhtml+='                    <a class="dropdown-item" href="'+ vURL +'/rtecs/'+ data[vi].id +'/edit">Editar</a>';
+            vhtml+='                    <a class="dropdown-item" href="'+ vURL +'/contadores/'+ data[vi].id +'/edit">Editar</a>';
         }
         if ( _permissionDelete ) {
             vhtml+='                    <a class="dropdown-item" href="javascript:void(0)" onClick="confirmDestroy('+ data[vi].id +')">Eliminar</a>';
@@ -95,7 +93,7 @@ function tbl_response(data)
         vhtml+='    </tbody>';
         vhtml+='</table>';
 
-    $('.tbl-rtecs').html(vhtml);
+    $('.tbl-contadores').html(vhtml);
     configTableBasic();
 
     var _table = $('.dataTable').DataTable();

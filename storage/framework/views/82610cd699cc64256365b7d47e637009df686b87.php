@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
     <meta charset="utf-8" />
     <title>Contadores | Web</title>
    
     <!-- Otras etiquetas meta y recursos -->
-    <link rel="icon" href="{{ asset('public/template/image/favicon.ico') }}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('public/template/image/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="<?php echo e(asset('public/template/image/favicon.ico')); ?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo e(asset('public/template/image/favicon.ico')); ?>" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('public/tools/assets/css/e-commerce/app.min.css') }}" />
-    <link rel="stylesheet" id="css-main" href="{{ asset('public/template/assets/js/plugins/jquery-confirm/css/jquery-confirm.css') }}">
-    <link rel="stylesheet" id="css-main" href="{{ asset('public/template/assets/js/plugins/animate/animate.min.css') }}">
-    <link rel="stylesheet" id="css-main" href="{{ asset('public/tools/assets/css/e-commerce/theme/'.  Auth::user()->theme .'.min.css') }}">
+    <link rel="stylesheet" href="<?php echo e(asset('public/tools/assets/css/e-commerce/app.min.css')); ?>" />
+    <link rel="stylesheet" id="css-main" href="<?php echo e(asset('public/template/assets/js/plugins/jquery-confirm/css/jquery-confirm.css')); ?>">
+    <link rel="stylesheet" id="css-main" href="<?php echo e(asset('public/template/assets/js/plugins/animate/animate.min.css')); ?>">
+    <link rel="stylesheet" id="css-main" href="<?php echo e(asset('public/tools/assets/css/e-commerce/theme/'.  Auth::user()->theme .'.min.css')); ?>">
 
     <style type="text/css">
         .dataTables_filter {
@@ -52,7 +52,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <div class="header-logo">
-                            <a href="{{ route('home') }}">
+                            <a href="<?php echo e(route('home')); ?>">
                                 <span class="brand-logo"></span>
                                 <span class="brand-text">
                                     <span class="text-primary">R</span>tecs
@@ -62,26 +62,26 @@
                         </div>
                         <div class="header-nav">
 
-                            @include('layouts.navigations')
+                            <?php echo $__env->make('layouts.navigations', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             
                         </div>
                         <div class="header-nav">
                             <ul class="nav pull-right">
                                 <li class="dropdown dropdown-hover">
                                     <a href="#" data-toggle="dropdown">
-                                        <img src="{{ asset('public/template/assets/media/avatars/avatar.jpg') }}" class="user-img" alt="" /> 
-                                        <span class="d-none d-xl-inline">{{ Auth::user()->rfc }}</span>
+                                        <img src="<?php echo e(asset('public/template/assets/media/avatars/avatar.jpg')); ?>" class="user-img" alt="" /> 
+                                        <span class="d-none d-xl-inline"><?php echo e(Auth::user()->rfc); ?></span>
                                         <b class="caret"></b>
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ url('mi/perfil') }}">Mi perfil</a>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" 
+                                        <a class="dropdown-item" href="<?php echo e(url('mi/perfil')); ?>">Mi perfil</a>
+                                        <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" 
                                             onclick="event.preventDefault(); 
                                             document.getElementById('logout-form').submit();">Cerrar sesión</a>
 
-                                        <input type="hidden" id="id_usuario" name="id_usuario" value="{{ Auth::user()->id }}">
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
+                                        <input type="hidden" id="id_usuario" name="id_usuario" value="<?php echo e(Auth::user()->id); ?>">
+                                        <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                                            <?php echo csrf_field(); ?>
                                         </form>
                                     </div>
                                 </li>
@@ -95,13 +95,13 @@
                 <div class="container">
                     <ul class="breadcrumb mb-3">
                         
-                        @yield('breadcrumb')
+                        <?php echo $__env->yieldContent('breadcrumb'); ?>
 
                     </ul>
 
-                    @yield('button-action')
+                    <?php echo $__env->yieldContent('button-action'); ?>
 
-                    @yield('content')
+                    <?php echo $__env->yieldContent('content'); ?>
                     
                 </div>
             </div>
@@ -188,13 +188,13 @@
         </div>
 
 
-        <script src="{{ asset('public/tools/assets/js/e-commerce/app.min.js') }}"></script>
-        <script src="{{ asset('public/template/assets/js/plugins/jquery-confirm/js/jquery-confirm.js') }}"></script>
+        <script src="<?php echo e(asset('public/tools/assets/js/e-commerce/app.min.js')); ?>"></script>
+        <script src="<?php echo e(asset('public/template/assets/js/plugins/jquery-confirm/js/jquery-confirm.js')); ?>"></script>
         <!-- Personal Js-Script -->
-        <script src="{{ asset('public/views/tools.js') }}"></script>
+        <script src="<?php echo e(asset('public/views/tools.js')); ?>"></script>
         <script>var vURL=window.location.origin + '/contadores';</script>
 
-        @yield('js')
+        <?php echo $__env->yieldContent('js'); ?>
 
         <script type="text/javascript">
 
@@ -237,7 +237,7 @@
                 }); 
              }
 
-            @yield('script')
+            <?php echo $__env->yieldContent('script'); ?>
         </script>
     </body>
-</html>
+</html><?php /**PATH C:\AppServ\www\contadores\resources\views/layouts/app.blade.php ENDPATH**/ ?>

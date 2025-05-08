@@ -10,7 +10,7 @@ function show( _id )
  {
     $.ajax({
         type: 'GET',
-        url: vURL + '/api/rtecs',
+        url: vURL + '/api/contadores',
         dataType: "JSON",
         data: {
             method: 'show',
@@ -18,14 +18,14 @@ function show( _id )
 
         },
         success: function(vresponse, vtextStatus, vjqXHR) {
-            let _html_espds ='';
-                _html_espds+='  <ul class="fa-ul mb-lg-4 mb-0">';
-                $.each(vresponse.espds, function(index, value) {
-                    _html_espds+='  <li>';
-                    _html_espds+='      <i class="fa fa-li fa-angle-right"></i><b>'+ value.clave +'</b> '+ value.especialidad;
-                    _html_espds+='  </li>';
-                });
-                _html_espds+='  </ul>';
+            // let _html_espds ='';
+            //     _html_espds+='  <ul class="fa-ul mb-lg-4 mb-0">';
+            //     $.each(vresponse.espds, function(index, value) {
+            //         _html_espds+='  <li>';
+            //         _html_espds+='      <i class="fa fa-li fa-angle-right"></i><b>'+ value.clave +'</b> '+ value.especialidad;
+            //         _html_espds+='  </li>';
+            //     });
+            //     _html_espds+='  </ul>';
             
             let _html ='';
                 _html+='<h2 class="text-center">'+ vresponse.data.nombre +'</br><small>'+ vresponse.data.colegio +'</small></h2>';
@@ -66,12 +66,12 @@ function show( _id )
                 _html+='                <td class="field">Fecha expedición</td>';
                 _html+='                <td class="value">'+ vresponse.data.fecha_expedicion +'</td>';
                 _html+='            </tr>';
-                _html+='            <tr>';
-                _html+='                <td class="field">Especialidades</td>';
-                _html+='                <td class="value">';
-                _html+=                     _html_espds;
-                _html+='                </td>';
-                _html+='            </tr>';
+                // _html+='            <tr>';
+                // _html+='                <td class="field">Especialidades</td>';
+                // _html+='                <td class="value">';
+                // _html+=                     _html_espds;
+                // _html+='                </td>';
+                // _html+='            </tr>';
                 _html+='        </tbody>';
                 _html+='    </table>';
                 _html+='</div>';
